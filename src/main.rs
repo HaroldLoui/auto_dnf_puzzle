@@ -1,8 +1,6 @@
 #[macro_use]
 extern crate lazy_static;
 
-#[warn(dead_code)]
-
 mod color;
 mod config;
 mod enigo_utils;

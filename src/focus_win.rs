@@ -26,6 +26,7 @@ pub fn focus_window(window_name: &str) -> Result<(), &'static str> {
     Ok(())
 }
 
+#[allow(dead_code)]
 pub fn print_window_names() {
     window_list()
         .unwrap()
