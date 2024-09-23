@@ -3,12 +3,12 @@ extern crate lazy_static;
 
 mod color;
 mod config;
-mod enigo_utils;
+mod mouse_utils;
 mod focus_win;
 
 use color::{Color, ColorIndex, COLOR_INDEX_MAP};
 use config::GLOBAL_CONFIG;
-use enigo_utils::EnigoUtils;
+use mouse_utils::MouseUtils;
 use image::{ImageBuffer, Pixel, Rgba};
 use std::time::Duration;
 use win_screenshot::prelude::*;
@@ -42,15 +42,15 @@ fn auto_puzzle() {
     let image_position = GLOBAL_CONFIG.get_image_position().unwrap();
     // 确认开始游戏的位置
     let start_position = GLOBAL_CONFIG.get_start_game().unwrap();
-    let mut enigo_utils = EnigoUtils::new();
+    let mouse_utils = MouseUtils::new();
     for cnt in 0..count {
         println!("开始游戏，当前轮次：{}", cnt);
         // 选择拼图
-        enigo_utils.move_mouse(image_position);
-        enigo_utils.left_click();
+        mouse_utils.move_mouse(image_position);
+        mouse_utils.left_click();
         // 点击确认按钮开始游戏
-        enigo_utils.move_mouse(start_position);
-        enigo_utils.left_click();
+        mouse_utils.move_mouse(start_position);
+        mouse_utils.left_click();
         // 暂停200毫秒进入游戏界面
         sleep(200);
         // 本轮游戏是否成功完成
@@ -74,13 +74,13 @@ fn auto_puzzle() {
                 let x = point.0 * block_size.1 + block_size.1 / 2 + delta.0;
                 let y = point.1 * block_size.0 + block_size.0 / 2 + delta.1;
                 // 先移动到选取图块位置
-                enigo_utils.move_mouse(choose_index_top);
+                mouse_utils.move_mouse(choose_index_top);
                 // 选取
-                enigo_utils.left_click();
+                mouse_utils.left_click();
                 // 移动到对应位置
-                enigo_utils.move_mouse((x, y));
+                mouse_utils.move_mouse((y, x));
                 // 放下
-                enigo_utils.left_click();
+                mouse_utils.left_click();
             } else {
                 is_success = false;
                 println!("无法根据拼图色块解析坐标，将直接结束本轮游戏！");
@@ -93,8 +93,8 @@ fn auto_puzzle() {
             // 结束一轮后暂停1.5s等待游戏动画结束
             sleep(2000);
             // 鼠标点击开始下一轮
-            enigo_utils.move_mouse(confirm_position);
-            enigo_utils.left_click();
+            mouse_utils.move_mouse(confirm_position);
+            mouse_utils.left_click();
         } else {
             println!("数据解析失败，程序即将退出，请确认参数是否正确！");
             break;
