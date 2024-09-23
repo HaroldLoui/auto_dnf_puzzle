@@ -17,4 +17,8 @@ version = "0.57"
 features = [
     "Win32_UI_WindowsAndMessaging",
     "Win32_Foundation",
+    "Win32_UI_Input_KeyboardAndMouse"
 ]
+
+[features]
+Win32_KeyboardAndMouse = ["windows/Win32_UI_Input_KeyboardAndMouse"]

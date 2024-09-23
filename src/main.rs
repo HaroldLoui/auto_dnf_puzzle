@@ -6,6 +6,9 @@ mod config;
 mod mouse_utils;
 mod focus_win;
 
+#[cfg(feature = "Win32_KeyboardAndMouse")]
+mod win32_mouse_utils;
+
 use color::{Color, ColorIndex, COLOR_INDEX_MAP};
 use config::GLOBAL_CONFIG;
 use mouse_utils::MouseUtils;
