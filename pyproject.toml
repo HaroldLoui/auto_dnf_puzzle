@@ -1,0 +1,13 @@
+[project]
+name = "mouse-monitor"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "pillow>=10.4.0",
+    "pyautogui>=0.9.54",
+    "pynput>=1.7.7",
+    "pypiwin32>=223",
+    "pyscreeze>=1.0.1",
+]
