@@ -3,7 +3,6 @@ import win32gui
 import pyautogui
 import time
 import pydirectinput
-import random
 
 # 每次执行间隔时间
 pydirectinput.PAUSE = 0.005
@@ -91,25 +90,6 @@ def click(dx, dy) -> bool:
         return True
     except:
         return False
-
-def test_move():
-    # 定义随机x坐标和y坐标的范围  
-    x_range = (0, 1920)  
-    y_range = (0, 500) 
-    cur = (1000, 900)
-
-    times = 0.0
-    for _ in range(192):
-        start = time.time_ns()
-        click(cur[0], cur[1])
-        # 生成随机x坐标和y坐标  
-        random_x = random.randint(x_range[0], x_range[1])  
-        random_y = random.randint(y_range[0], y_range[1])  
-        click(random_x, random_y)
-        end = time.time_ns()
-        times = times + (end - start)
-    
-    print(f'花费：{times / 1000000000}秒')
 
 if __name__ == '__main__':
     # 聚焦应用程序
