@@ -33,28 +33,38 @@ def auto_puzzle():
 
     for cnt in range(count):
         # 选择拼图
-        print("开始游戏，当前轮次：%d", cnt)
-        click(image_position)
-        time.sleep(0.1)
+        print("开始游戏，当前轮次：%d" % cnt)
+        click(image_position[0], image_position[1])
+        time.sleep(0.05)
         # 点击确认按钮开始游戏
-        click(start_position)
+        click(start_position[0], start_position[1])
         time.sleep(0.2)
         is_success = True
         for _ in range(192):
-            # 选取图块的上下部分颜色
-            color1 = rgb_to_hex(pyautogui.pixel(choose_point_top[0], choose_point_top[1]))
-            color2 = rgb_to_hex(pyautogui.pixel(choose_point_bottom[0], choose_point_bottom[1]))
-            key = ColorIndex(color1, color2)
-            # 获取坐标
-            point = dicts.get(key)
+            point = None
+            num = 0
+            while point is None:
+                num += 1
+                # 选取图块的上下部分颜色
+                color1 = rgb_to_hex(pyautogui.pixel(choose_point_top[0], choose_point_top[1]))
+                color2 = rgb_to_hex(pyautogui.pixel(choose_point_bottom[0], choose_point_bottom[1]))
+                key = ColorIndex(color1, color2)
+                # 获取坐标
+                point = dicts.get(key)
+                if point is not None or num >= 20:
+                    break
+                else:
+                    time.sleep(0.05)
+
             if point is not None:
                 # 计算放置位置
-                y = point[1] * block_size[0] + int(block_size[0] / 2) + offset[0]
-                x = point[0] * block_size[1] + int(block_size[1] / 2) + offset[1]
+                x = point[1] * block_size[0] + int(block_size[0] / 2) + offset[0]
+                y = point[0] * block_size[1] + int(block_size[1] / 2) + offset[1]
                 # 先移动到选取图块位置选取拼图
-                click(choose_point_top)
+                while click(choose_point_top[0], choose_point_top[1]) == False:
+                    pass
                 # 移动到对应位置放下拼图
-                click((y, x))
+                click(x, y)
             else:
                 is_success = False
                 break
@@ -63,7 +73,7 @@ def auto_puzzle():
             # 结束一轮后暂停1.5s等待游戏动画结束
             time.sleep(2)
             # 鼠标点击开始下一轮
-            click(confirm_position)
+            click(confirm_position[0], confirm_position[1])
         else:
             print("数据解析失败，程序即将退出，请确认参数是否正确！")
             break
@@ -72,13 +82,15 @@ def rgb_to_hex(rgb: tuple) -> str:
     hex_color = '#{:02x}{:02x}{:02x}'.format(rgb[0], rgb[1], rgb[2])  
     return hex_color  
 
-def click(point: tuple):
-    _click(point[0], point[1])
-
-def _click(dx, dy):
-    pydirectinput.mouseDown(x=dx, y=dy)
-    time.sleep(0.001)
-    pydirectinput.mouseUp()
+def click(dx, dy) -> bool:
+    try:
+        pydirectinput.mouseDown(x=dx, y=dy)
+        time.sleep(0.005)
+        pydirectinput.mouseUp()
+        time.sleep(0.02)
+        return True
+    except:
+        return False
 
 def test_move():
     # 定义随机x坐标和y坐标的范围  
@@ -89,11 +101,11 @@ def test_move():
     times = 0.0
     for _ in range(192):
         start = time.time_ns()
-        _click(cur[0], cur[1])
+        click(cur[0], cur[1])
         # 生成随机x坐标和y坐标  
         random_x = random.randint(x_range[0], x_range[1])  
         random_y = random.randint(y_range[0], y_range[1])  
-        _click(random_x, random_y)
+        click(random_x, random_y)
         end = time.time_ns()
         times = times + (end - start)
     
