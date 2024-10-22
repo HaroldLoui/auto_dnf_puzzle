@@ -5,7 +5,8 @@ import pyautogui
 import time
 
 # 每次事件操作后暂停的时间（秒），默认0.1
-# 注释或者改大程序会运行更稳定，但时间会更长（我自己的电脑是13秒一把）
+# 注释或者改大程序会运行更加稳定，但耗费时间会更长（我自己的电脑是13秒一把）
+# 出现不稳定的情况，就放弃当前游戏，重新运行脚本即可
 pydirectinput.PAUSE = 0.005
 
 row_colors = ["#000000","#332211","#664422","#996633","#cc8844","#ffaa55","#32cc66","#65ee77","#981088","#cb3299","#fe54aa","#3176bb"]
@@ -93,7 +94,7 @@ def auto_puzzle():
             break
 
     total_seconds = total_time / 1_000_000_000
-    print(f"所有轮次已结束，总耗时：{total_seconds}s，平均耗时：{total_seconds / count}s")
+    print(f"所有轮次已结束，总耗时：{total_seconds}s，平均耗时：{total_seconds / cnt}s")
 
 def rgb_to_hex(rgb):  
     # 格式化每个颜色值为两位的16进制数  

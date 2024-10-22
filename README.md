@@ -41,6 +41,6 @@ uv sync
 uv run auto_puzzle.py
 ```
 
-没有（也不想）安装[uv](https://github.com/astral-sh/uv)?
+没有（也不想）安装 [uv](https://github.com/astral-sh/uv) ?
 
 > 将`auto_puzzle.py`和`color_index.py`复制到单独的文件夹，使用`pip`或者其它工具安装`pyproject.toml`里`dependencies`包含的依赖，最后（管理员权限）运行`auto_puzzle.py`。
