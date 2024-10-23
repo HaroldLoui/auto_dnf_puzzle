@@ -1,12 +1,12 @@
 ### 1、下载补丁安装后重启游戏
 
-补丁地址：[度盘]()
+补丁地址：[度盘](https://pan.baidu.com/s/18r_NcovoP9uhQExrfBmRkg)，提取码：z1b2
 
 ### 2、将游戏窗口和小游戏的左上角和屏幕的左上角尽量重合
 
 如图所示：
 
-![game.png]()
+![game.png](screenshot/puzzle.png)
 
 ### 3、修改相关参数
 
