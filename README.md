@@ -11,22 +11,28 @@
 ### 3、修改相关参数
 
 - block_size：单个拼图图块的大小
-    > ![block_size.png]()
+    > ![block_size.png](screenshot/block_size.png)
+
 - offset：拼图区域离左上角的偏移量
-    > ![offset.png]()
+    > ![offset.png](screenshot/offset.png)
+    
 - choose_point_top：待选择拼图图块上部分中心的位置
-    > ![top.png]()
+    > ![top.png](screenshot/top.png)
+
 - choose_point_bottom：待选择拼图图块下部分中心的位置
-    > ![bottom.png]()
+    > ![bottom.png](screenshot/bottom.png)
+
 - image_position：打了补丁后第二张192块拼图中心的位置
-    > ![image.png]()
+    > ![image.png](screenshot/image_position.png)
+
 - start_position：开始游戏按钮中心的位置
-    > ![start.png]()
+    > ![start.png](screenshot/start.png)
+
 - confirm_position：完成一轮游戏后点击确认按钮中心的位置
-    > ![confirm.png]()
+
 - count：执行轮次，一轮50硬币
 
-除了图块大小，其余位置和偏移量都是屏幕左上角（0，0）到对应位置的坐标，可以使用QQ自带的截图工具或者你熟悉的工具从拖动获取
+除了图块大小，其余位置和偏移量都是**屏幕**左上角（0，0）到对应位置的坐标，可以使用QQ自带的截图工具或者你熟悉的工具从拖动获取
 
 ### 4、运行项目
 
